@@ -8,27 +8,23 @@
 import Spring
 
 class AnimationModel {
-    private(set) var nextAnimationName = ""
-    private(set) var currentAnimationName = ""
-    private(set) var curve = ""
-    private(set) var duration: CGFloat = 0
-    private(set) var force: CGFloat = 0
+    private(set) var nextAnimationName: String
+    private(set) var currentAnimationName: String
+    private(set) var curve: String
+    private(set) var duration: CGFloat
+    private(set) var force: CGFloat
     
     init() {
-        setRandomValues()
-    }
-    
-    func update() {
-        currentAnimationName = nextAnimationName
         nextAnimationName = AnimationPreset.allCases.randomElement()!.rawValue
+        currentAnimationName = AnimationPreset.allCases.randomElement()!.rawValue
         curve = AnimationCurve.allCases.randomElement()!.rawValue
         duration = .random(in: 0.3...0.9)
         force = .random(in: 0.1...2)
     }
     
-    private func setRandomValues() {
+    func update() {
+        currentAnimationName = nextAnimationName
         nextAnimationName = AnimationPreset.allCases.randomElement()!.rawValue
-        currentAnimationName = AnimationPreset.allCases.randomElement()!.rawValue
         curve = AnimationCurve.allCases.randomElement()!.rawValue
         duration = .random(in: 0.3...0.9)
         force = .random(in: 0.1...2)
